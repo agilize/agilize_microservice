@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.4-fpm
 
 # System dependencies
 RUN apt-get update && apt-get install -y \
