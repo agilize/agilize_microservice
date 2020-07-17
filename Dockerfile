@@ -21,9 +21,7 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Packages
 # Feel free to remove things you won't use
-RUN docker-php-ext-install -j$(nproc) mysqli \
-        pdo_mysql \
-        pdo \
+RUN docker-php-ext-install -j$(nproc) pdo \
         pdo_pgsql \
         mbstring \
         bcmath \
