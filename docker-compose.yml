@@ -4,7 +4,7 @@ services:
     image: nginx:latest
     restart: always
     ports:
-      - 1112:80
+      - 1113:80
     networks:
       - agilize
   php:
