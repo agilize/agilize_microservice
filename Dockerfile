@@ -1,26 +1,47 @@
 FROM php:7.4-fpm-alpine
 
 # System dependencies
-RUN apt-get update && apt-get install -y \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
-        libxslt-dev \
+RUN apk add --no-cache \
+        openssl \
+        bash-doc \
+        bash-completion \
+        libcurl \
+        libzip-dev \
+        oniguruma-dev \
+        curl-dev \
         libxml2-dev \
+        libxslt-dev \
+        icu-dev \
         gettext \
-        libmcrypt-dev \
-        libcurl4 \
-        libcurl4-openssl-dev \
-        libonig-dev \
-        libzip-dev
-
+        gettext-dev \
+        postgresql-dev
 
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Packages
 # Feel free to remove things you won't use
-RUN docker-php-ext-install -j$(nproc) mysqli pdo_mysql pdo pdo_pgsql mbstring bcmath opcache calendar exif pcntl shmop sysvmsg sysvsem sysvshm curl xml soap xsl gettext zip sockets
+RUN docker-php-ext-install -j$(nproc) mysqli \
+        pdo_mysql \
+        pdo \
+        pdo_pgsql \
+        mbstring \
+        bcmath \
+        opcache \
+        calendar \
+        exif \
+        pcntl \
+        shmop \
+        sysvmsg \
+        sysvsem \
+        sysvshm \
+        curl \
+        xml \
+        soap \
+        xsl \
+        gettext \
+        zip \
+        sockets
 
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
